@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "87632736823",
+    "project_id": "fir-chatt-f8a64",
+    "storage_bucket": "fir-chatt-f8a64.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:87632736823:android:6b88cc7735a9886e8045b2",
+        "android_client_info": {
+          "package_name": "com.example.funayou"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "87632736823-10vm0vb8n18g06uin8k0hqqjlbugt4g7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCINByA7PUVYIuk6wLlWq0cuZtPLHzXR58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "87632736823-10vm0vb8n18g06uin8k0hqqjlbugt4g7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

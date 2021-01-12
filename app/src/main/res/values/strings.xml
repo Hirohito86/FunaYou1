@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">FunaYou</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="user">User</string>
+    <string name="password">Password</string>
+    <string name="password_miss">I forgot my password</string>
+    <string name="log_in">Log in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="enter_information">enter your register information</string>
+    <string name="mail">Mail</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="i_have_an_account">I have an account</string>
+    <string name="register_me">Sign up</string>
+    <string name="user_name">User name</string>
+    <string name="finish">Finish</string>
+    <string name="profile_picture">Profile picture</string>
+    <string name="to_finish">To finish, select a user name and picture profile</string>
+    <string name="first_fragment_label">Primer fragmento</string>
+    <string name="second_fragment_label">Segundo fragmento</string>
+</resources>
