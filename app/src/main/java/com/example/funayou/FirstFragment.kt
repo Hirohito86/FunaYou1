@@ -1,6 +1,5 @@
 package com.example.funayou
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -8,12 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_first.*
-import kotlinx.android.synthetic.main.fragment_seventh.*
 
 
 /**
@@ -70,16 +67,17 @@ class FirstFragment : Fragment() {
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
             mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener() {
-                        task ->
-                    if (task.isSuccessful) {
+                    if(it.isSuccessful){
                         findNavController().navigate(R.id.action_FirstFragment_to_FifthFragment)
                         //equisdededede
 
                         } else {
                         findNavController().navigate(R.id.action_FirstFragment_to_FifthFragment)
-                        // sino le avisamos al usuario que orcurrio un problema
-                        //Toast.makeText(this, "Authentication failed.",
-                            //Toast.LENGTH_SHORT).show()
+                        val snackBar = Snackbar.make(
+                            //activity!!.findViewById(android.R.id.content),
+                            //"Look at me, I'm a fancy snackbar", Snackbar.LENGTH_LONG
+                        )
+                        snackBar.show()
                     }
                 }
         } else {
