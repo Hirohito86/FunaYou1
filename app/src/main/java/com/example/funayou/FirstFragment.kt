@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_first.*
  */
 class FirstFragment : Fragment() {
 
-    var mAuth = FirebaseAuth.getInstance()
+    private lateinit var mAuth: FirebaseAuth
     var email: String = ""
     var password: String = ""
 
