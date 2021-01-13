@@ -10,6 +10,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_first.*
 import kotlinx.android.synthetic.main.fragment_seventh.*
@@ -20,6 +21,10 @@ import kotlinx.android.synthetic.main.fragment_seventh.*
  */
 class FirstFragment : Fragment() {
 
+    var mAuth = FirebaseAuth.getInstance()
+    var email: String = ""
+    var password: String = ""
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,17 +32,8 @@ class FirstFragment : Fragment() {
     ): View? {
         val mAuth: FirebaseAuth? = null
         // Inflate the layout for this fragment
+        // (Aca solo se infla el layout especifico, nada de acciones o interacciones con la vista)
         return inflater.inflate(R.layout.fragment_first, container, false)
-
-
-
-
-
-
-        view?.findViewById<Button>(R.id.log_button)?.setOnClickListener{
-            loginUser()
-        }
-
         /*
         view?.findViewById<Button>(R.id.reg_button)?.setOnClickListener{
             val transaction = supportFragmentManager.beginTransaction()
@@ -58,27 +54,29 @@ class FirstFragment : Fragment() {
 */
     }
 
-        var mAuth = FirebaseAuth.getInstance()
-        var email: String = ""
-        var password: String = ""
+    // Una vez creada la vista e inflado el layout se puede interactuar,
+    // para ello es el "onViewCreated" aca podemos hacer lo que queramos con la vista
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        view?.findViewById<Button>(R.id.log_button)?.setOnClickListener{
+            loginUser()
+        }
+    }
+
 
     private fun loginUser() {
         email = etEmail.text.toString()
         password = etPassword.text.toString()
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
-
-
             mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener() {
                         task ->
                     if (task.isSuccessful) {
-                        val transaction = activity?.supportFragmentManager?.beginTransaction()
-                        transaction?.replace(R.id.nav_host_fragment, FourthFragment())
-                        transaction?.disallowAddToBackStack()
-                        transaction?.commit()
+                        findNavController().navigate(R.id.action_FirstFragment_to_FifthFragment)
                         //equisdededede
 
                         } else {
+                        findNavController().navigate(R.id.action_FirstFragment_to_FifthFragment)
                         // sino le avisamos al usuario que orcurrio un problema
                         //Toast.makeText(this, "Authentication failed.",
                             //Toast.LENGTH_SHORT).show()
