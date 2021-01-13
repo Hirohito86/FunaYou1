@@ -65,7 +65,17 @@ class FirstFragment : Fragment() {
         email = etEmail.text.toString()
         password = etPassword.text.toString()
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
-            mAuth.signInWithEmailAndPassword(email, password)
+            //Autenticamos con firebase
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password).addOnCompleteListener {
+                if(it.isSuccessful){
+                    view?.let { it1 -> Snackbar.make(it1, "holo", Snackbar.LENGTH_LONG).show()};
+
+                }
+                else{
+                    view?.let { it1 -> Snackbar.make(it1, "", Snackbar.LENGTH_LONG).show()};
+
+                }
+            }
                 .addOnCompleteListener() {
                     if(it.isSuccessful){
                         findNavController().navigate(R.id.action_FirstFragment_to_FifthFragment)
@@ -73,15 +83,13 @@ class FirstFragment : Fragment() {
                         //equisdededede
 
                     } else {
-                        findNavController().navigate(R.id.action_FirstFragment_to_FifthFragment)
+                     //   findNavController().navigate(R.id.action_FirstFragment_to_FifthFragment)
                         //val snackBar = Snackbar.make(
                             //activity!!.findViewById(android.R.id.content),
                             //"Look at me, I'm a fancy snackbar", Snackbar.LENGTH_LONG
                         //snackBar.show()
                     }
                 }
-        } else {
-            //Toast.makeText(this, "Enter all details", Toast.LENGTH_SHORT).show()
         }
     }
 
