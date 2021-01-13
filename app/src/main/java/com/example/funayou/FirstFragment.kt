@@ -70,14 +70,14 @@ class FirstFragment : Fragment() {
                     if(it.isSuccessful){
                         findNavController().navigate(R.id.action_FirstFragment_to_FifthFragment)
                         //equisdededede
+                        //equisdededede
 
-                        } else {
+                    } else {
                         findNavController().navigate(R.id.action_FirstFragment_to_FifthFragment)
-                        val snackBar = Snackbar.make(
+                        //val snackBar = Snackbar.make(
                             //activity!!.findViewById(android.R.id.content),
                             //"Look at me, I'm a fancy snackbar", Snackbar.LENGTH_LONG
-                        )
-                        snackBar.show()
+                        //snackBar.show()
                     }
                 }
         } else {
