@@ -18,4 +18,6 @@
     <string name="finish">Finalizar</string>
     <string name="profile_picture">Foto de perfil</string>
     <string name="to_finish">Para finalizar, selecione un nombre de usuario y una foto de perfil.</string>
+    <string name="first_fragment_label">Primer fragmento</string>
+    <string name="second_fragment_label">Segundo fragmento</string>
 </resources>
