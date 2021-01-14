@@ -1,46 +1,100 @@
 package com.example.funayou
 
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import androidx.navigation.fragment.findNavController
-import kotlinx.android.synthetic.main.fragment_second.*
+import android.widget.EditText
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import android.widget.ProgressBar as ProgressBar
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
-class SecondFragment : Fragment() {
 
-    override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second, container, false)
+class SecondFragment : AppCompatActivity() {
+
+    private lateinit var NombreR:EditText
+    private lateinit var ApellidoR:EditText
+    private lateinit var EmailR:EditText
+    private lateinit var PasswaordR:EditText
+    private lateinit var progressBar: ProgressBar
+    private lateinit var dbReference:DatabaseReference
+    private lateinit var database:FirebaseDatabase
+    private lateinit var auth:FirebaseAuth
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_second)
+        NombreR=findViewById(R.id.NombreR)
+        ApellidoR=findViewById(R.id.ApellidoR)
+        EmailR=findViewById(R.id.EmailR)
+        PasswaordR=findViewById(R.id.PasswordR)
+
+        progressBar= findViewById(R.id.progressBar)
+        database= FirebaseDatabase.getInstance()
+        auth= FirebaseAuth.getInstance()
+
+        dbReference=database.reference.child("User")
+
+
+
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    fun register(view: View) {
+        createNewAccount()
 
+    }
 
-        view?.findViewById<Button>(R.id.button_reg1)?.setOnClickListener{
-            if (editTextTextPassword4.text.toString() == editTextTextPassword5.text.toString()){
-            Datos.contraseña = editTextTextPassword4.text.toString()
-            Datos.correo = editTextTextEmailAddress3.text.toString()
-            }
-            else if (!TextUtils.isEmpty(editTextTextPassword4.text.toString())|| !TextUtils.isEmpty(editTextTextEmailAddress3.text.toString()) || !TextUtils.isEmpty(editTextTextPassword5.text.toString())){
-                //Dar mensaje de que tu vida está tan vacía como los textbox que no llenaste
-            }
-            else{
-                //Dar mensaje de que t0do es un caos y todos moriremos
-            }
-            //Datos.foto =
-            //Datos.nombre = ""
+    private fun createNewAccount(){
+        val name:String=NombreR.text.toString()
+        val lastName:String=ApellidoR.text.toString()
+        val email:String=EmailR.text.toString()
+        val password:String=PasswaordR.text.toString()
+
+        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(lastName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
+            progressBar.visibility=View.VISIBLE
+
+            auth.createUserWithEmailAndPassword(email,password)
+                .addOnCompleteListener(this){
+                    task ->
+                    if (task.isComplete){
+                        val user:FirebaseUser?=auth.currentUser
+                        verifyEmail(user)
+
+                        val userBD=dbReference.child(user?.uid.toString())
+
+                        userBD.child("Name").setValue(name)
+                        userBD.child("lastName").setValue(lastName)
+                        action()
+
+                    }
+                }
+
         }
 
     }
+    private fun action(){
+        startActivity(Intent(this,FirstFragment::class.java))
+
+
+    }
+
+    private fun verifyEmail(user:FirebaseUser?){
+       user?.sendEmailVerification()
+           ?.addOnCompleteListener(this){
+               task ->
+
+               if(task.isComplete){
+                   Toast.makeText(this,"Email enviado",Toast.LENGTH_LONG).show()
+               }else {
+                   Toast.makeText(this,"Error al enviar el email",Toast.LENGTH_LONG).show()
+               }
+           }
+    }
+
 }
+
+
