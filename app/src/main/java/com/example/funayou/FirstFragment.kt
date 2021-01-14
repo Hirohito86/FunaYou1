@@ -24,7 +24,7 @@ class FirstFragment : Fragment() {
     private lateinit var mAuth: FirebaseAuth
     var email: String = ""
     var password: String = ""
-
+/**/
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
