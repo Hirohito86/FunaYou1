@@ -6,12 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_first.*
 
@@ -21,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_first.*
  */
 class FirstFragment : Fragment() {
 
-    private lateinit var mAuth: FirebaseAuth
+    var mAuth = FirebaseAuth.getInstance()
     var email: String = ""
     var password: String = ""
 /**/
@@ -67,16 +64,6 @@ class FirstFragment : Fragment() {
     private fun loginUser() {
         email = etEmail.text.toString()
         password = etPassword.text.toString()
-        if (mAuth.signInWithEmailAndPassword(email, password).isSuccessful){
-
-            view?.let { it1 -> Snackbar.make(it1, "Ingreso de usuario correcto", Snackbar.LENGTH_LONG).show()};
-        }
-        else{
-
-            view?.let { it1 -> Snackbar.make(it1, "Ingreso incorrecto", Snackbar.LENGTH_LONG).show()};
-        }
-
-        /*
         if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
             mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener() {
@@ -87,13 +74,15 @@ class FirstFragment : Fragment() {
 
                     } else {
                         findNavController().navigate(R.id.action_FirstFragment_to_FifthFragment)
-                        view?.let { it1 -> Snackbar.make(it1, "", Snackbar.LENGTH_LONG).show()};
+                        //val snackBar = Snackbar.make(
+                            //activity!!.findViewById(android.R.id.content),
+                            //"Look at me, I'm a fancy snackbar", Snackbar.LENGTH_LONG
+                        //snackBar.show()
                     }
                 }
         } else {
             //Toast.makeText(this, "Enter all details", Toast.LENGTH_SHORT).show()
         }
-        */
     }
 
 
