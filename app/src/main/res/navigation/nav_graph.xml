@@ -36,15 +36,5 @@
             android:id="@+id/action_FirstFragment_to_FifthFragment"
             app:destination="@id/FifthFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/First2Fragment"
-        android:name="com.example.funayou.ChatFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_chat"/>
-    <fragment
-        android:id="@+id/First2Fragment"
-        android:name="com.example.funayou.ChatFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_chat"/>
 
 </navigation>

@@ -2,12 +2,20 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph1.xml"
-    app:startDestination="@id/chatFragment">
-
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mensajes">
     <fragment
-        android:id="@+id/chatFragment"
-        android:name="com.example.funayou.ChatFragment"
-        android:label="fragment_chat"
-        tools:layout="@layout/fragment_chat" />
+        android:id="@+id/mensajes"
+        android:name="com.example.funayou.Mensaje_Item"
+        android:label="mensajes"
+        tools:layout="@layout/mensajes" >
+        <action
+            android:id="@+id/action_mensajes_to_perfilUsuarioFragment2"
+            app:destination="@id/perfilUsuarioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/perfilUsuarioFragment"
+        android:name="com.example.funayou.PerfilUsuarioFragment"
+        android:label="fragment_perfil_usuario"
+        tools:layout="@layout/fragment_perfil_usuario"/>
 </navigation>

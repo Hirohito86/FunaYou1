@@ -7,4 +7,7 @@ public class Datos {
     public static String contraseña;
     public static String correo;
     public static Image foto;
+
+    public static String id_user;
+
 }

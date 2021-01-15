@@ -1,4 +1,4 @@
-package com.example.funayou
+package com.example.funayou;
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
