@@ -38,16 +38,11 @@ class SecondFragment : AppCompatActivity() {
         auth= FirebaseAuth.getInstance()
 
         dbReference=database.reference.child("User")
-
-
-
     }
 
     fun register(view: View) {
         createNewAccount()
-
     }
-
     private fun createNewAccount(){
         val name:String=NombreR.text.toString()
         val lastName:String=ApellidoR.text.toString()
@@ -69,19 +64,13 @@ class SecondFragment : AppCompatActivity() {
                         userBD.child("Name").setValue(name)
                         userBD.child("lastName").setValue(lastName)
                         action()
-
                     }
                 }
-
         }
-
     }
     private fun action(){
         startActivity(Intent(this,FirstFragment::class.java))
-
-
     }
-
     private fun verifyEmail(user:FirebaseUser?){
        user?.sendEmailVerification()
            ?.addOnCompleteListener(this){
